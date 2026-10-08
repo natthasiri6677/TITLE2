@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ระบบบันทึกรายรับรายจ่าย</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>สมุดรายรับรายจ่าย</h1>
+      <p>จดทุกรายการ แล้วดูว่าเงินเหลือเท่าไหร่</p>
+    </header>
+
+    <section class="summary" aria-label="สรุปยอด">
+      <div class="box balance">
+        <span>ยอดคงเหลือ</span>
+        <strong id="balance">฿0.00</strong>
+      </div>
+      <div class="box income">
+        <span>รายรับรวม</span>
+        <strong id="totalIncome">฿0.00</strong>
+      </div>
+      <div class="box expense">
+        <span>รายจ่ายรวม</span>
+        <strong id="totalExpense">฿0.00</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>เพิ่มรายการ</h2>
+      <form id="entryForm">
+        <div class="type-toggle" role="radiogroup" aria-label="ประเภท">
+          <label><input type="radio" name="type" value="income" checked><span>รายรับ</span></label>
+          <label><input type="radio" name="type" value="expense"><span>รายจ่าย</span></label>
+        </div>
+        <label>ชื่อรายการ
+          <input type="text" id="title" placeholder="เช่น ค่าข้าวกลางวัน" required maxlength="40">
+        </label>
+        <div class="row">
+          <label>จำนวนเงิน (บาท)
+            <input type="number" id="amount" min="0.01" step="0.01" placeholder="0.00" required>
+          </label>
+          <label>วันที่
+            <input type="date" id="date" required>
+          </label>
+        </div>
+        <button type="submit" class="btn-primary">บันทึกรายการ</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="list-head">
+        <h2>รายการทั้งหมด</h2>
+        <div class="filters" role="group" aria-label="กรองรายการ">
+          <button class="chip active" data-filter="all">ทั้งหมด</button>
+          <button class="chip" data-filter="income">รายรับ</button>
+          <button class="chip" data-filter="expense">รายจ่าย</button>
+        </div>
+      </div>
+      <ul id="list"></ul>
+      <p id="empty" class="empty">ยังไม่มีรายการ ลองเพิ่มรายการแรกด้านบน</p>
+      <button id="clearAll" class="btn-text">ล้างข้อมูลทั้งหมด</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
